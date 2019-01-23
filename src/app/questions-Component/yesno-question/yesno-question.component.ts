@@ -21,7 +21,7 @@ export class YesnoQuestionComponent implements OnInit {
     this.questionsService.loadAnswersSubject.subscribe(
       (userAnswers: IQuestionAndAnswer[]) => {
         this.oldAnswer = userAnswers[this.index].answer;
-    this.questionsService.answersSubject.next({ question: this.question.text, answer: this.oldAnswer, index: this.index });
+        this.questionsService.answersSubject.next({ question: this.question.text, answer: this.oldAnswer, index: this.index });
 
       }
     )
