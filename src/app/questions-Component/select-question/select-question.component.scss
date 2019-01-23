@@ -1,0 +1,7 @@
+@import '../../../scss/vars';
+
+#selectQ{
+    background-color: $selectQuestion-color;
+    padding: $container-padding;
+    border-radius: $border-radius;
+}

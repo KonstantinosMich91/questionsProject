@@ -1,0 +1,7 @@
+@import '../../../scss/vars';
+
+#numberQ{
+    background-color: $numberQuestion-color;
+    padding: $container-padding;
+    border-radius: $border-radius;
+}

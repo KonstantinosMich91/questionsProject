@@ -1,0 +1,5 @@
+<div id="yesNoQ" class="container">
+  <div *ngFor="let answer of answers">
+    <input type="radio" name="answer" value="{{answer}}" (change)="radioChangeHandler($event)" [checked]="answer === oldAnswer">
+    {{answer}}</div>
+</div>

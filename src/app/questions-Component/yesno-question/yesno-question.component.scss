@@ -1,0 +1,7 @@
+@import '../../../scss/vars';
+
+#yesNoQ{
+    background-color: $yesNoQuestion-color;
+    padding: $container-padding;
+    border-radius: $border-radius;
+}

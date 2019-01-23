@@ -1,0 +1,11 @@
+@import '../../../scss/vars';
+
+#multiSelect{
+    background-color: $multiSelectQuestion-color;
+    padding: $container-padding;
+    border-radius: $border-radius;
+}
+
+#myBtn{
+    margin: $myBtn-margin;
+}

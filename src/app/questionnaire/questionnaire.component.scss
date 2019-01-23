@@ -1,0 +1,13 @@
+@import '../../scss/vars';
+
+.finalBtns{
+    margin: $buttonGroup-margin;
+}
+
+#btnComplete{
+    margin-right: 10px;
+}
+
+body{
+    background-color: $background-color;
+}

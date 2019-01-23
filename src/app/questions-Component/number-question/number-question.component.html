@@ -1,0 +1,19 @@
+<div id="numberQ"class="container">
+  <form [formGroup]="numberGroup">
+      <input *ngIf="userOldAnswer === null" class="form-control" style="width:100px;" type="number" formControlName="answer" >
+      <input *ngIf="userOldAnswer" value="{{userOldAnswer}}" class="form-control" style="width:100px;" type="number" formControlName="answer" >
+      <span style="color: red" *ngIf="numberGroup.get('answer').value === ''">You must enter an number</span>
+      <span *ngIf="!numberGroup.get('answer').valid && numberGroup.get('answer').touched" class="help-block">
+          <p style="color: red" *ngIf="!numberGroup.get('answer').valid  && numberGroup.get('answer').touched">Answer
+              Invalid</p>
+
+
+          <span style="color: red" *ngIf="numberGroup.get('answer').value > question.max">You must enter a smaller
+              number</span>
+          <span style="color: red" *ngIf=" min >= numberGroup.get('answer').value  ">You must enter a bigger number</span>
+      </span>
+      <span style="color:green" *ngIf="numberGroup.get('answer').valid && numberGroup.get('answer').touched">Valid
+          Answer </span>
+  </form>
+  <p style="margin-top: 10px; padding: 5px;">Min: {{question.min}} / Max: {{question.max}} </p>
+</div>

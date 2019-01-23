@@ -1,0 +1,13 @@
+<div id="multiSelect"class="container">
+  <form>
+      <label class="checkbox-inline" *ngFor="let option of question.option; let i = index">
+          <input type="checkbox" 
+                 value="{{option}}" 
+                 (change)="answerChanged($event)" 
+                 [disabled]="cantSelectMore"
+                 [checked]="isActive || oldAnswer === option"
+                 >{{option}}</label>
+  </form>
+  <p style="margin-top: 15px;">(Max Answers:{{ question.max }})</p>
+  <button class="btn btn-primary" id="myBtn" (click)="onResetValues()">Reset your answers</button>
+</div>
