@@ -1,4 +1,4 @@
-<div id="multiSelect"class="container">
+<!-- <div id="multiSelect"class="container">
   <form>
       <label class="checkbox-inline" *ngFor="let option of question.option; let i = index">
           <input type="checkbox" 
@@ -10,4 +10,16 @@
   </form>
   <p style="margin-top: 15px;">(Max Answers:{{ question.max }})</p>
   <button class="btn btn-primary" id="myBtn" (click)="onResetValues()">Reset your answers</button>
+</div> -->
+
+<div id="multiSelect" class="container">
+  <form [formGroup]='multiSelectForm'>
+      <div class="form-check form-check-inline" *ngFor="let control of optionsArray.controls; let i = index;" >
+        <input [attr.disabled]="isDisabled? '' : null" class="form-check-input" type="checkbox" [formControl]="control" id="inlineCheckbox{{i}}" (change)="getSelectedOptionValues()">
+        <label class="form-check-label" for="inlineCheckbox{{i}}">{{question.option[i]}}</label>
+      </div>
+      {{isDisabled}}
+  </form>
+  <p style="margin-top: 15px;">(Max Answers:{{ question.max }})</p>
 </div>
+<button class="btn btn-primary" (click)="onReset()">Reset answers</button>

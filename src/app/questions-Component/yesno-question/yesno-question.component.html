@@ -1,5 +1,16 @@
-<div id="yesNoQ" class="container">
+<!-- <div id="yesNoQ" class="container">
   <div *ngFor="let answer of answers">
     <input type="radio" name="answer" value="{{answer}}" (change)="radioChangeHandler($event)" [checked]="answer === oldAnswer">
     {{answer}}</div>
+</div> -->
+
+<div id="yesNoQ" class="container" >
+  <div *ngIf="oldAnswer === null"class="form-group">
+    <input type="radio" name="{{question.text}}" value="Yes" (change)="radioChangeHandler($event)"  [(ngModel)]="answer" > Yes
+    <input type="radio" name="{{question.text}}" value="No" (change)="radioChangeHandler($event)"   [(ngModel)]="answer" > No
+  </div>
+  <div *ngIf="oldAnswer !== null"class="form-group">
+    <input [ngClass]="{'checked': oldAnswer === 'Yes'}" type="radio" name="{{question.text}}" value="Yes" (change)="radioChangeHandler($event)" [(ngModel)]="oldAnswer" > Yes
+    <input [ngClass]="{'checked' : oldAnswer === 'No'}"  type="radio" name="{{question.text}}" value="No" (change)="radioChangeHandler($event)"   [(ngModel)]="oldAnswer"> No
+  </div>
 </div>

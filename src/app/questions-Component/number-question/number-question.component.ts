@@ -28,7 +28,7 @@ export class NumberQuestionComponent implements OnInit {
         this.numberGroup.valueChanges.subscribe(
             (value) => {
                 if (value.answer > this.question.max || value.answer < this.question.min) {
-                    this.questionsService.answersSubject.next({ question: this.question.text, answer: null, index: this.index });
+                    this.questionsService.answersSubject.next({ question: this.question.text, answer: undefined, index: this.index });
                 } else {
                     this.questionsService.answersSubject.next({ question: this.question.text, answer: value.answer, index: this.index });
                 }
@@ -37,7 +37,9 @@ export class NumberQuestionComponent implements OnInit {
 
         this.questionsService.loadAnswersSubject.subscribe(
             (userAnswer: IQuestionAndAnswer[]) => {
+               
                 this.userOldAnswer = userAnswer[this.index].answer;
+                
                 this.questionsService.answersSubject.next({ question: this.question.text, answer: this.userOldAnswer, index: this.index });
             }
         )

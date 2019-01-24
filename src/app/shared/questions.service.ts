@@ -39,6 +39,18 @@ export class QuestionsService {
             'Footbal', 'Gaming', 'Canoe Kayak', 'Basketball', 'Puzzle games'
           ], max: 3
         },
+        { type: 'yesno', text: 'Do you like traveling?' },
+        {
+          type: 'select', text: "Where do you live?", options: [
+            'Thessaloniki', 'Athens', 'Patra', 'Serres', 'Kozani'
+          ]
+        },
+        
+        {
+          type: 'multiselect', text: 'Select up to three hobbies that you enjoy', option: [
+            'Footbal', 'Gaming', 'Canoe Kayak', 'Basketball', 'Puzzle games'
+          ], max: 3
+        }
       ]
     }
   }

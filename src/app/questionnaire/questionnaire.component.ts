@@ -11,8 +11,7 @@ import { Router } from '@angular/router';
 })
 export class QuestionnaireComponent implements OnInit {
 	questions: Question[]; 							//storage for all questions
-	questionsWithAnswers: IQuestionAndAnswer[] = [];//array for all answers after onComplete()
-	// public currentUser: User | null = null;         
+	questionsWithAnswers: IQuestionAndAnswer[] = [];//array for all answers after onComplete()       
 	constructor(private questionsService: QuestionsService,
 		private router: Router) {
 		this.questions = this.questionsService.getQuestions();
@@ -24,30 +23,26 @@ export class QuestionnaireComponent implements OnInit {
 				this.questionsWithAnswers[newValue.index] = { question: newValue.question, answer: newValue.answer };
 			}
 		)
-		// this.currentUser = this.userService.currentUser;//i set the current user here too
-		// console.log(`Current user in questionnaire component ${this.currentUser.name}`)
 	}
 
 	onComplete() {
+		console.log(this.questionsWithAnswers);
+		console.log(this.questions['questions'])
 		if (this.questionsWithAnswers.length < this.questions['questions'].length) {
 			alert('You must complete all the questions');
 			return;
 		}
 		for (let i = 0; i < this.questionsWithAnswers.length; i++) {//if there is null in answer
-			if (!this.questionsWithAnswers[i] || !this.questionsWithAnswers[i].answer) {
-				alert('You must complete all the questions');
-
+			if (!this.questionsWithAnswers[i] || this.questionsWithAnswers[i].answer.length == 0) {
+				alert('You have to complete the multiSelect question(s)');
 				return;
 			}
 		}
 
 		console.log(this.questionsWithAnswers);
 		this.saveAnswerToLocalStorage(this.questionsWithAnswers)
-		// console.log(this.questionsWithAnswers)
-		// this.currentUser.addQuestionnaire(this.questionsWithAnswers)
-		// console.log('updated users questions:');
-		// console.log(this.currentUser);
-		// this.userService.setLocalStorageUsers(this.userService.users);
+		
+	
 	}
 
 	public saveAnswerToLocalStorage(answers: IQuestionAndAnswer[]):void{
@@ -56,26 +51,16 @@ export class QuestionnaireComponent implements OnInit {
 	public getOldAnswer(): IQuestionAndAnswer[]{
 		let localStorageItem = JSON.parse(localStorage.getItem('answers'));
 		console.log(localStorageItem)
-		// const userObjects: Array<User> = []
-		// if(localStorageItem == null){
-		// 	return [];
-		// }
 		return localStorageItem;
-		// for(const user of localStorageItem.users) {
-		// 	let newUser =new User(user.id, user.name, user.gender)
-		// 	newUser.questionnarieResults = user.questionnarieResults;
-		// 	userObjects.push(newUser);
-		// }
-		
-		// return answerObject;
+
 	}
 
 	onStartAgain() {
-		// if(this.userService.currentUser.questionnarieResults.length === 0){
-		// 	alert(`You dont have complete the questions before to load them! Please answer first!`);
-		// 	return;
-		// }
-		// console.log(this.userService.currentUser.getQuestionnaireResults());
+		let oldAnswers = this.getOldAnswer();
+		if(!oldAnswers){
+			alert('First time here! No history ')
+			return;
+		}
 		this.questionsService.loadAnswersSubject.next(this.getOldAnswer())
 		
 
