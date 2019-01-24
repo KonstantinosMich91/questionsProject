@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class QuestionnaireComponent implements OnInit {
 	questions: Question[]; 							//storage for all questions
-	questionsWithAnswers: IQuestionAndAnswer[] = [];//array for all answers after onComplete()       
+	questionsWithAnswers: any[] = [];//array for all answers after onComplete() (temporary : any to pass the if condition in onComplete())      
 	constructor(private questionsService: QuestionsService,
 		private router: Router) {
 		this.questions = this.questionsService.getQuestions();
