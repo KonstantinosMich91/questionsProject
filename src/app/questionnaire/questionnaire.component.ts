@@ -34,15 +34,13 @@ export class QuestionnaireComponent implements OnInit {
 		}
 		for (let i = 0; i < this.questionsWithAnswers.length; i++) {//if there is null in answer
 			if (!this.questionsWithAnswers[i] || this.questionsWithAnswers[i].answer.length == 0) {
-				alert('You have to complete the multiSelect question(s)');
+				alert('You must complete all the questions');
 				return;
 			}
 		}
-
-		console.log(this.questionsWithAnswers);
-		this.saveAnswerToLocalStorage(this.questionsWithAnswers)
 		
-	
+		this.saveAnswerToLocalStorage(this.questionsWithAnswers)
+		alert('Complete!');
 	}
 
 	public saveAnswerToLocalStorage(answers: IQuestionAndAnswer[]):void{
@@ -50,23 +48,14 @@ export class QuestionnaireComponent implements OnInit {
 	}
 	public getOldAnswer(): IQuestionAndAnswer[]{
 		let localStorageItem = JSON.parse(localStorage.getItem('answers'));
-		console.log(localStorageItem)
 		return localStorageItem;
-
 	}
 
 	onStartAgain() {
-		let oldAnswers = this.getOldAnswer();
-		if(!oldAnswers){
+		if(!this.getOldAnswer()){
 			alert('First time here! No history ')
 			return;
 		}
 		this.questionsService.loadAnswersSubject.next(this.getOldAnswer())
-		
-
 	}
-
-
-
-
 }

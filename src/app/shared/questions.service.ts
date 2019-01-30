@@ -11,14 +11,12 @@ import 'rxjs/Rx';
 export class QuestionsService {
 
   private questionsJson;
-  private userAnswers;
   answersSubject = new Subject<INumberAnswer | IMultiSelectAnswer | ISelectAnswer | IYesNoAnswer>();
   loadAnswersSubject = new Subject<IQuestionAndAnswer[]>();
-  myObservable = Observable.interval(1000);
+ 
 
   constructor() {
-    this.initQuestions()
-   
+    this.initQuestions();
   }
 
   initQuestions() {
@@ -28,11 +26,11 @@ export class QuestionsService {
         { type: 'yesno', text: 'Do you bike?' },
 
         {
-          type: 'select', text: "Where do you live?", options: [
-            'Thessaloniki', 'Athens', 'Patra', 'Serres', 'Kozani'
+          type: 'select', text:'Your favorite programming language?', options: [
+            'C++', 'Java', 'Python', 'Javascript'
           ]
         },
-        { type: 'number', text: "How many pets you have?", min: 0, max: 20 },
+        { type: 'number', text: "How many pets do you have?", min: 0, max: 20 },
 
         {
           type: 'multiselect', text: 'Select up to three hobbies that you enjoy', option: [
@@ -45,11 +43,11 @@ export class QuestionsService {
             'Thessaloniki', 'Athens', 'Patra', 'Serres', 'Kozani'
           ]
         },
-        
+    
         {
-          type: 'multiselect', text: 'Select up to three hobbies that you enjoy', option: [
-            'Footbal', 'Gaming', 'Canoe Kayak', 'Basketball', 'Puzzle games'
-          ], max: 3
+          type: 'multiselect', text: 'Select up to four citys you want to visit ', option: [
+            'London', 'Kalabaka city', 'Barcelona', 'Amsterdam', 'Berlin', 'Oss'
+          ], max: 4
         }
       ]
     }

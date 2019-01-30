@@ -10,20 +10,18 @@ import { NumQuestion, Question, IQuestionAndAnswer } from '../../shared/question
     styleUrls: ['./number-question.component.scss']
 })
 export class NumberQuestionComponent implements OnInit {
-    private numberGroup: FormGroup;
+    numberGroup: FormGroup;
     @Input() index: number;
     @Input() question: NumQuestion;
- 
     userOldAnswer: any = null;
 
-    constructor(private questionsService: QuestionsService) {
-       
-     }
+    constructor(private questionsService: QuestionsService) {}
 
     ngOnInit() {
         this.numberGroup = new FormGroup({
             answer: new FormControl(null, [Validators.required, this.biggerThanMax.bind(this), this.smallerThanMin.bind(this)])//
         })
+        
 
         this.numberGroup.valueChanges.subscribe(
             (value) => {
@@ -37,14 +35,10 @@ export class NumberQuestionComponent implements OnInit {
 
         this.questionsService.loadAnswersSubject.subscribe(
             (userAnswer: IQuestionAndAnswer[]) => {
-               
                 this.userOldAnswer = userAnswer[this.index].answer;
-                
                 this.questionsService.answersSubject.next({ question: this.question.text, answer: this.userOldAnswer, index: this.index });
             }
         )
-       
-    
     }
 
     biggerThanMax(control: FormControl): { [s: string]: boolean } {

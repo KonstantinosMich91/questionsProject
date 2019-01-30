@@ -7,25 +7,33 @@
 </nav>
 <div class="container">
 	<h2>Questions</h2>
-</div>
-<div *ngFor="let question of questions.questions; let i = index">
-	<p>Question {{i + 1}}: </p>
-	<h3>{{question.text}}</h3>
-	<div *ngIf="question.type === 'number'">
-		<app-number-question [question]="question" (numberChanged)="reviceNewNumber($event)" [index]="i" ></app-number-question>
+
+	<div *ngFor="let question of questions.questions; let i = index">
+		<div class="row">
+
+			<p>Question {{i + 1}}: </p>
+			<h3>{{question.text}}</h3>
+			<div >
+				<div *ngIf="question.type === 'number'">
+					<app-number-question [question]="question" (numberChanged)="reviceNewNumber($event)" [index]="i"></app-number-question>
+				</div>
+				<div *ngIf="question.type === 'select'">
+					<app-select-question [question]="question" [index]="i"></app-select-question>
+				</div>
+				<div *ngIf="question.type === 'yesno'">
+					<app-yesno-question [question]="question" [index]="i"></app-yesno-question>
+				</div>
+				<div *ngIf="question.type === 'multiselect'">
+					<app-multiselect-question [question]="question" [index]="i"></app-multiselect-question>
+				</div>
+				<hr>
+			</div>
+
+		</div>
+
 	</div>
-	<div *ngIf="question.type === 'select'">
-		<app-select-question [question]="question" [index]="i" ></app-select-question>
+	<div class="finalBtns">
+		<button id="btnComplete" class="btn btn-success" type="submit" (click)="onComplete()">Complete</button>
+		<button class="btn btn-primary" (click)="onStartAgain()">Load answers</button>
 	</div>
-	<div *ngIf="question.type === 'yesno'">
-		<app-yesno-question [question]="question" [index]="i"></app-yesno-question>
-	</div>
-	<div *ngIf="question.type === 'multiselect'">
-		<app-multiselect-question [question]="question" [index]="i"></app-multiselect-question>
-	</div>
-	<hr>
-</div>
-<div class="finalBtns">
-  <button  id="btnComplete" class="btn btn-success" type="submit" (click)="onComplete()">Complete</button>
-  <button class="btn btn-primary" (click)="onStartAgain()">Load answers</button>
 </div>

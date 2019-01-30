@@ -19,7 +19,7 @@ import { appRoutes } from './shared/routes';
     NumberQuestionComponent,
     SelectQuestionComponent,
     YesnoQuestionComponent,
-    MultiselectQuestionComponent,
+     MultiselectQuestionComponent,
    
   ],
   imports: [

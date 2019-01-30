@@ -3,7 +3,7 @@ import { Options } from 'selenium-webdriver/firefox';
 import { QuestionsService } from '../../shared/questions.service';
 import { FormGroup, FormControl, Validators, FormsModule, FormBuilder, FormArray } from '@angular/forms';
 import { MultiSelectQuestion, IQuestionAndAnswer } from '../../shared/questions.model';
-import { flatMap } from 'rxjs/operators';
+
 
 @Component({
 	selector: 'app-multiselect-question',
@@ -24,7 +24,6 @@ export class MultiselectQuestionComponent implements OnInit {
 
 	ngOnInit() {
 		this.options = this.question.option;
-		console.log(this.options)
 
 		this.multiSelectForm = this._fb.group({
 			options: this.addOptionControls()
@@ -32,13 +31,13 @@ export class MultiselectQuestionComponent implements OnInit {
 
 		this.questionService.loadAnswersSubject.subscribe(
 			(userAnsers: IQuestionAndAnswer[]) => {
+				this.multiSelectForm.reset()
 				for (var i = 0; i < this.options.length; i++) {
 					for (var j = 0; j < this.options.length; j++) {
 						if (this.options[i] === userAnsers[this.index]['answer'][j]) {
 							this.optionsArray.controls[i].setValue(true);
 						}
 					}
-
 				}
 				this.getSelectedOptionValues()
 			});
@@ -46,6 +45,7 @@ export class MultiselectQuestionComponent implements OnInit {
 
 	onReset() {
 		this.multiSelectForm.reset();
+		this.multiSelectForm.enable()
 		this.selectOptionValues = [];
 		this.isDisabled = false;
 		this.questionService.answersSubject.next({ question: this.question.text, answer: [], index: this.index })
@@ -55,7 +55,6 @@ export class MultiselectQuestionComponent implements OnInit {
 		const arr = this.options.map(element => {
 			return this._fb.control(false);
 		})
-
 		return this._fb.array(arr);
 	}
 
@@ -63,17 +62,27 @@ export class MultiselectQuestionComponent implements OnInit {
 		return <FormArray>this.multiSelectForm.get('options');
 	}
 
+	changeIsDisabled() {
+		this.isDisabled = true;
+	}
+
 	getSelectedOptionValues() {
+
 		this.selectOptionValues = [];
+
 		for (let i = 0; i < this.optionsArray.controls.length; i++) {
-			if (this.optionsArray.controls[i].value && this.selectOptionValues.length <= 3) {
+			if (this.optionsArray.controls[i].value && this.selectOptionValues.length < this.question.max) {
+
 				this.selectOptionValues.push(this.options[i])
-				if (this.selectOptionValues.length === 3) {
-					this.isDisabled = true;
+
+				if (this.selectOptionValues.length === this.question.max) {
+					this.questionService.answersSubject.next({ question: this.question.text, answer: this.selectOptionValues, index: this.index });
+					this.multiSelectForm.disable()
+					return
 				}
 			}
 		}
+
 		this.questionService.answersSubject.next({ question: this.question.text, answer: this.selectOptionValues, index: this.index })
-		console.log(this.selectOptionValues);
 	}
 }

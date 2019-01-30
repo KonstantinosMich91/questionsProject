@@ -1,7 +1,6 @@
-<div id="selectQ" class="form-group">
+<div id="selectQ" class="container">
   <label for="sel1">Select list:</label>
   <select class="form-control" id="sel1" style="width: 200px;" [(ngModel)]="selected" (change)="selectedValue($event)">
     <option *ngFor="let option of question.options; let i = index" [ngClass]="{'selected': option === selected }">{{option}}</option>
-
   </select>
 </div>

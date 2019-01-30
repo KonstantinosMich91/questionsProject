@@ -17,9 +17,7 @@ export interface MultiSelectQuestion extends Question {
 }
 
 export interface YesNo extends Question {
-    question: string;
-    answer: string;
-    index: number;
+  
 }
 
 export interface INumberAnswer {
