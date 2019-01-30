@@ -1,6 +1,6 @@
 <div id="yesNoQ" class="container" >
   <div *ngIf="oldAnswer === null"class="form-group">
-    <input type="radio" name="{{question.text}}" value="Yes" (change)="radioChangeHandler($event)"  [(ngModel)]="answer" > Yes
+    <input class="yes" type="radio" name="{{question.text}}" value="Yes" (change)="radioChangeHandler($event)"  [(ngModel)]="answer" > Yes
     <input type="radio" name="{{question.text}}" value="No" (change)="radioChangeHandler($event)"   [(ngModel)]="answer" > No
   </div>
   <div *ngIf="oldAnswer !== null"class="form-group">

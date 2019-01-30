@@ -3,6 +3,8 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { YesnoQuestionComponent } from './yesno-question.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { QuestionsService } from 'src/app/shared/questions.service';
+import { By } from '@angular/platform-browser';
+// import { By } from 'protractor';
 
 describe('YesnoQuestionComponent', () => {
   let component: YesnoQuestionComponent;
@@ -29,9 +31,11 @@ describe('YesnoQuestionComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('shoube Yes the answer if "Yes" is selected', () => {
-    component.yesNoGroup.controls['yes'].enabled;
+  it('shoube is should be TRUE if answer is Yes', () => {
+    component.answer = 'Yes';
     fixture.detectChanges();
-    expect(component.answer).toBe('Yes');
+    let el = fixture.debugElement.query( By.css('.yes'));
+    
+    expect(el.attributes).toContain({value: 'Yes'});
   })
 });

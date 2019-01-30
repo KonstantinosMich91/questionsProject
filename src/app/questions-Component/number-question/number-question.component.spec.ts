@@ -6,7 +6,7 @@ import { QuestionsService } from 'src/app/shared/questions.service';
 import { By } from '@angular/platform-browser';
 import { detectChanges } from '@angular/core/src/render3';
 
-xdescribe('NumberQuestionComponent', () => {
+describe('NumberQuestionComponent', () => {
   let component: NumberQuestionComponent;
   let fixture: ComponentFixture<NumberQuestionComponent>;
 
@@ -29,7 +29,7 @@ xdescribe('NumberQuestionComponent', () => {
 
   it('should display "You must enter an number" if the answer is empty', () => {
     component.numberGroup.setValue({answer: null})
-    component.numberGroup.controls['answer'].markAsTouched;
+    component.numberGroup.get('answer').markAsTouched();
     fixture.detectChanges();
     const paragraph = fixture.debugElement.query(By.css('.error'));
     expect(paragraph.nativeElement.textContent).toContain('You must enter an number');
@@ -50,7 +50,7 @@ xdescribe('NumberQuestionComponent', () => {
     
     let paragraph = fixture.debugElement.query(By.css('.error3'));
     let el: HTMLElement = paragraph.nativeElement;
-    expect(el).toContain('You must enter a smaller number');
+    expect(el.textContent).toContain('You must enter a smaller number');
   })
 });
 
