@@ -1,0 +1,71 @@
+﻿Task
+Create a front end application that will take a json file describing a questionnaire and it will render the corresponding questions collecting the answers from the user.
+The supported types of questions are:
+* Number (optionally with specific range min/max)
+* Select (select an answer from a given set)
+* Multi select (select one or more answers from a specific set, optionally with max number of choices)
+* Yes / No
+JSON format (example)
+{
+        questions: [
+                {
+                        type: “number”,
+text: “What’s your age?”,
+                        min: 0,
+                        max: 100
+                },
+                {
+                        type: “select”,
+text: “Where do you live?”,
+                        options: [
+                                “Thessaloniki”,
+                                “Athens”,
+                                “Patra”,
+                                “Serres”,
+                                “Kozani”
+                        ]
+                },
+                {
+                        type: “multiselect”,
+text: “Select up to three hobbies that you enjoy”,
+                        options: [
+                                “Football”,
+                                “Gaming”,
+                                “Canoe Kayak”,
+                                “Basketball”,
+                                “Puzzle games”
+                        ],
+                        max: 3
+                },
+                {
+                        type: “yesno”,
+                        text: “Are you planning to buy a car soon?”
+                }
+        ]
+}
+
+
+Implementation Details
+Make it themable.
+Use SASS for the styling. 
+Via a config file on your SASS code define a set of 4 (or more) colours and reuse them among the full extend of your app.
+
+
+Use state management
+Use observables & Angular services / optionally you can play with ngrx instead of services
+
+
+Make it modular.
+The questionnaire should be exported as a reusable module (even via npm as a second step) which should be reusable / embeddable to any Angular application. Ask but make it happen
+
+
+Make it object oriented.
+Use factory pattern to create your questionnaire components (create one component per question type).
+
+
+Make it extendable.
+Make sure your questionnaire module can be extended by adding new question types.
+
+
+Remember your users.
+Use localstorage to remember user’s answers and provide a “start again” button to the users that have already finished the questionnaire.
