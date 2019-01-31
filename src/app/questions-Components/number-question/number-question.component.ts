@@ -39,8 +39,6 @@ export class NumberQuestionComponent implements OnInit {
                 this.questionsService.answersSubject.next({ question: this.question.text, answer: this.userOldAnswer, index: this.index });
             }
         )
-       
-        console.log()
     }
 
     biggerThanMax(control: FormControl): { [s: string]: boolean } {

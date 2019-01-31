@@ -36,7 +36,6 @@ describe('SelectQuestionComponent', () => {
 
   it('should contain the selected answer' , () => {
     component.selected = 'Python';
-  
     let el: HTMLElement = fixture.debugElement.query(By.css('.selec')).nativeElement;
     fixture.detectChanges();
     expect(el.textContent).toContain('Python')

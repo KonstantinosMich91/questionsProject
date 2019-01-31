@@ -15,7 +15,7 @@ export class MultiselectQuestionComponent implements OnInit {
 	options: Array<string>;
 	multiSelectForm: FormGroup;
 	selectOptionValues = [];
-	isDisabled: boolean = false;
+
 
 
 	constructor(private questionService: QuestionsService,
@@ -29,11 +29,11 @@ export class MultiselectQuestionComponent implements OnInit {
 		})
 
 		this.questionService.loadAnswersSubject.subscribe(
-			(userAnsers: IQuestionAndAnswer[]) => {
+			(userAnswers: IQuestionAndAnswer[]) => {
 				this.multiSelectForm.reset();
 				for (var i = 0; i < this.options.length; i++) {
 					for (var j = 0; j < this.options.length; j++) {
-						if (this.options[i] === userAnsers[this.index]['answer'][j]) {
+						if (this.options[i] === userAnswers[this.index]['answer'][j]) {
 							this.optionsArray.controls[i].setValue(true);
 						}
 					}
@@ -65,19 +65,17 @@ export class MultiselectQuestionComponent implements OnInit {
 		this.selectOptionValues = [];
 
 		for (let i = 0; i < this.optionsArray.controls.length; i++) {
-			if (this.optionsArray.controls[i].value && this.selectOptionValues.length < this.question.max) {
+			if (this.optionsArray.controls[i].value && this.selectOptionValues.length <= this.question.max) {
 
 				this.selectOptionValues.push(this.options[i]);
 
 				if (this.selectOptionValues.length === this.question.max) {
 					this.questionService.answersSubject.next({ question: this.question.text, answer: this.selectOptionValues, index: this.index });
 					this.multiSelectForm.disable();
-					this.isDisabled = true;
 					return;
 				}
 			}
 		}
-
 		this.questionService.answersSubject.next({ question: this.question.text, answer: this.selectOptionValues, index: this.index })
 	}
 }

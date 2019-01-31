@@ -5,10 +5,10 @@ import { QuestionsService } from '../shared/questions.service';
 import { Observable } from 'rxjs';
 import { toBase64String } from '@angular/compiler/src/output/source_map';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NumberQuestionComponent } from '../questions-Component/number-question/number-question.component';
-import { SelectQuestionComponent } from '../questions-Component/select-question/select-question.component';
-import { MultiselectQuestionComponent } from '../questions-Component/multiselect-question/multiselect-question.component';
-import { YesnoQuestionComponent } from '../questions-Component/yesno-question/yesno-question.component';
+import { NumberQuestionComponent } from '../questions-Components/number-question/number-question.component';
+import { SelectQuestionComponent } from '../questions-Components/select-question/select-question.component';
+import { MultiselectQuestionComponent } from '../questions-Components/multiselect-question/multiselect-question.component';
+import { YesnoQuestionComponent } from '../questions-Components/yesno-question/yesno-question.component';
 
 describe('QuestionnaireComponent', () => {
   let component: QuestionnaireComponent;
@@ -19,7 +19,7 @@ describe('QuestionnaireComponent', () => {
       declarations: [ QuestionnaireComponent, NumberQuestionComponent, 
                       SelectQuestionComponent, MultiselectQuestionComponent, YesnoQuestionComponent],
       imports: [FormsModule,
-        ReactiveFormsModule],
+                ReactiveFormsModule],
       providers: [QuestionsService]
     })
     .compileComponents();
