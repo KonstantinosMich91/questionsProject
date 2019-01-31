@@ -24,6 +24,7 @@ export class QuestionnaireComponent implements OnInit {
 	}
 
 	onComplete() {
+		console.log(this.questionsWithAnswers);
 		if (this.questionsWithAnswers.length < this.questions['questions'].length) {
 			alert('You must complete all the questions');
 			return;
@@ -50,7 +51,7 @@ export class QuestionnaireComponent implements OnInit {
 	public saveAnswerToLocalStorage(answers: IQuestionAndAnswer[]):void{
 		localStorage.setItem('answers',JSON.stringify(answers));
 	}
-	
+
 	public getOldAnswer(): IQuestionAndAnswer[]{
 		let localStorageOldAnswers = JSON.parse(localStorage.getItem('answers'));
 		return localStorageOldAnswers;

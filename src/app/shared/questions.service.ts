@@ -22,8 +22,10 @@ export class QuestionsService {
   initQuestions() {
     this.questionsJson = {
       questions: [
+        
         { type: 'number', text: "What's your age?", min: 0, max: 100 },
-        { type: 'yesno', text: 'Do you bike?' },
+
+        { type: 'yesno', text: 'Do you like psychedelic rock?' },
 
         {
           type: 'select', text:'Your favorite programming language?', options: [
@@ -37,7 +39,7 @@ export class QuestionsService {
             'Footbal', 'Gaming', 'Canoe Kayak', 'Basketball', 'Puzzle games'
           ], max: 3
         },
-        { type: 'yesno', text: 'Do you like traveling?' },
+        { type: 'yesno', text: 'Do you like sports?' },
         {
           type: 'select', text: "Where do you live?", options: [
             'Thessaloniki', 'Athens', 'Patra', 'Serres', 'Kozani'
@@ -48,7 +50,8 @@ export class QuestionsService {
           type: 'multiselect', text: 'Select up to four citys you want to visit ', option: [
             'London', 'Kalabaka city', 'Barcelona', 'Amsterdam', 'Berlin', 'Oss'
           ], max: 4
-        }
+        },
+      
       ]
     }
   }
