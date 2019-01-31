@@ -9,6 +9,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 3. Download Angular cli. To install the CLI using npm, open a terminal/console window and enter the 
   following command:   npm install -g @angular/cli
 4. Get into the questionsProject file: cd questionsProject
+
 5.Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
 ## Code scaffolding
