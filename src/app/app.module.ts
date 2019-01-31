@@ -26,7 +26,8 @@ import { appRoutes } from './shared/routes';
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

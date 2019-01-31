@@ -9,7 +9,6 @@ import { SelectQuestion, IQuestionAndAnswer } from '../../shared/questions.model
   styleUrls: ['./select-question.component.scss']
 })
 export class SelectQuestionComponent implements OnInit {
-  @Input() options;
   @Input() index;
   selected: any;
   oldAnswer: any = null;

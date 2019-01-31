@@ -15,7 +15,7 @@
 			<h3>{{question.text}}</h3>
 			<div >
 				<div *ngIf="question.type === 'number'">
-					<app-number-question [question]="question" (numberChanged)="reviceNewNumber($event)" [index]="i"></app-number-question>
+					<app-number-question [question]="question"  [index]="i"></app-number-question>
 				</div>
 				<div *ngIf="question.type === 'select'">
 					<app-select-question [question]="question" [index]="i"></app-select-question>

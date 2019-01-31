@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { QuestionsService } from '../shared/questions.service';
 import { Question, INumberAnswer, IMultiSelectAnswer, ISelectAnswer, IYesNoAnswer, IQuestionAndAnswer } from '../shared/questions.model';
-import { Router } from '@angular/router';
+
 
 
 @Component({
@@ -13,7 +13,7 @@ export class QuestionnaireComponent implements OnInit {
 	questions: Question[]; 							//storage for all questions
 	questionsWithAnswers: any[] = [];//array for all answers after onComplete() (temporary : any to pass the if condition in onComplete())      
 	constructor(private questionsService: QuestionsService,
-		private router: Router) {
+				) {
 		this.questions = this.questionsService.getQuestions();
 	}
 
@@ -23,6 +23,7 @@ export class QuestionnaireComponent implements OnInit {
 				this.questionsWithAnswers[newValue.index] = { question: newValue.question, answer: newValue.answer };
 			}
 		)
+		this.questions = this.questionsService.getQuestions();
 	}
 
 	onComplete() {
